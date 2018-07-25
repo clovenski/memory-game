@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Memory Game</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
+  <script src="js/main.js"></script>
+</head>
+<body>
+  <div id="menu">
+    <h1>Memory Game</h1>
+    <p>by: <a href="https://clovenski.github.io/resume/">Joel Tengco</a></p>
+    <p>Simple memory game where you select tiles in the grid and try to match two that are the same.</p>
+    <button id="power_button" onclick="pressPowerButton()">Start Game</button>
+    <text id="status" style="padding-top:10px;display:block;"></text>
+  </div>
+  <div id="window">
+      <!-- Below are the 16 tiles in the grid, filled from left to right, top to bottom -->
+    <div id="box1" class="box">
+      <button id="button1" onclick="pressBoxButton(1)">Select</button>
+      <h1 id="element1" class="game_element"></h1>
+    </div>
+    <div id="box2" class="box">
+      <button id="button2" onclick="pressBoxButton(2)">Select</button>
+      <h1 id="element2" class="game_element"></h1>
+    </div>
+    <div id="box3" class="box">
+      <button id="button3" onclick="pressBoxButton(3)">Select</button>
+      <h1 id="element3" class="game_element"></h1>
+    </div>
+    <div id="box4" class="box">
+      <button id="button4" onclick="pressBoxButton(4)">Select</button>
+      <h1 id="element4" class="game_element"></h1>
+    </div>
+    <div id="box5" class="box">
+        <button id="button5" onclick="pressBoxButton(5)">Select</button>
+        <h1 id="element5" class="game_element"></h1>
+    </div>
+    <div id="box6" class="box">
+        <button id="button6" onclick="pressBoxButton(6)">Select</button>
+        <h1 id="element6" class="game_element"></h1>
+    </div>
+    <div id="box7" class="box">
+        <button id="button7" onclick="pressBoxButton(7)">Select</button>
+        <h1 id="element7" class="game_element"></h1>
+    </div>
+    <div id="box8" class="box">
+        <button id="button8" onclick="pressBoxButton(8)">Select</button>
+        <h1 id="element8" class="game_element"></h1>
+    </div>
+    <div id="box9" class="box">
+        <button id="button9" onclick="pressBoxButton(9)">Select</button>
+        <h1 id="element9" class="game_element"></h1>
+    </div>
+    <div id="box10" class="box">
+        <button id="button10" onclick="pressBoxButton(10)">Select</button>
+        <h1 id="element10" class="game_element"></h1>
+    </div>
+    <div id="box11" class="box">
+        <button id="button11" onclick="pressBoxButton(11)">Select</button>
+        <h1 id="element11" class="game_element"></h1>
+    </div>
+    <div id="box12" class="box">
+        <button id="button12" onclick="pressBoxButton(12)">Select</button>
+        <h1 id="element12" class="game_element"></h1>
+    </div>
+    <div id="box13" class="box">
+        <button id="button13" onclick="pressBoxButton(13)">Select</button>
+        <h1 id="element13" class="game_element"></h1>
+    </div>
+    <div id="box14" class="box">
+        <button id="button14" onclick="pressBoxButton(14)">Select</button>
+        <h1 id="element14" class="game_element"></h1>
+    </div>
+    <div id="box15" class="box">
+        <button id="button15" onclick="pressBoxButton(15)">Select</button>
+        <h1 id="element15" class="game_element"></h1>
+    </div>
+    <div id="box16" class="box">
+        <button id="button16" onclick="pressBoxButton(16)">Select</button>
+        <h1 id="element16" class="game_element"></h1>
+    </div>
+  </div>
+</body>
+</html>
