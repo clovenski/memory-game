@@ -12,8 +12,11 @@ function pressPowerButton() {
 }
 
 function startGame() {
+    // change power button to "Exit Game"
     document.getElementById("power_button").innerHTML = "Exit Game";
+    // show game window
     document.getElementById("window").style.display = "block";
+    // initialize game variables
     lives = INIT_LIVES;
     updateStatus("Good luck!");
     firstChoice = secondChoice = undefined;
@@ -39,12 +42,12 @@ function exitGame() {
     var targetButton;
     var targetElement;
 
+    // for every box in window, reset its button and game element to initial state
     for (var i = 1; i <= GAME_SIZE; i++) {
         targetBox = document.getElementById("box" + i);
         targetButton = targetBox.children[0];
         targetElement = targetBox.children[1];
         targetButton.style.display = "inline";
-        targetButton.innerHTML = "Select";
         targetElement.style.backgroundColor = "transparent";
         targetElement.style.display = "none";
         targetElement.innerHTML = "";
@@ -58,6 +61,7 @@ function exitGame() {
 function pressBoxButton(boxNumber) {
     var targetBox = document.getElementById("box" + boxNumber);
 
+    // if player is making their first choice
     if (typeof firstChoice === 'undefined') {
         firstChoice = {
             box: targetBox,
@@ -65,41 +69,37 @@ function pressBoxButton(boxNumber) {
             element: targetBox.children[1]
         };
 
-        // set game element in box visible
+        // show game element
         firstChoice.element.style.display = "block";
-        // change box button text to "deselect"
-        firstChoice.button.innerHTML = "Deselect";
+        // hide button
+        firstChoice.button.style.display = "none";
 
-    } else if (!targetBox.isSameNode(firstChoice.box)) {
-        // check for equal box elements; if match then change background color to green and hide buttons
-        // else change first choice button back to select
+    } else { // player is making their second choice
+        // check for equal box elements:
+        // if match then change background color to green and hide both buttons
+        // else hide both box elements and show first choice button
         secondChoice = {
             box: targetBox,
             button: targetBox.children[0],
             element: targetBox.children[1]
         };
 
+        // if the game elements match, ie. contain the same number
         if (firstChoice.element.innerHTML == secondChoice.element.innerHTML) {
-            firstChoice.button.style.display = "none";
             firstChoice.element.style.backgroundColor = MATCH_COLOR;
             secondChoice.button.style.display = "none";
             secondChoice.element.style.backgroundColor = MATCH_COLOR;
             secondChoice.element.style.display = "block";
-            firstChoice = secondChoice = undefined;
             solvedBoxes += 2;
             solvedBoxes == GAME_SIZE ? winGame() : updateStatus("That was a match!");
         } else {
-            firstChoice.button.innerHTML = "Select";
+            firstChoice.button.style.display = "inline";
             firstChoice.element.style.display = "none";
-            firstChoice = secondChoice = undefined;
             lives--;
             lives == 0 ? loseGame() : updateStatus("That was not a match!");
         }
-    } else {
-        // deselect first choice
-        firstChoice.element.style.display = "none";
-        firstChoice.button.innerHTML = "Select";
-        firstChoice = undefined;
+        
+        firstChoice = secondChoice = undefined;
     }
 }
 
@@ -114,6 +114,7 @@ function loseGame() {
     var targetElement;
 
     document.getElementById("status").innerHTML = "You lost!";
+    // for every box in window, show its element and hide its button
     for (var i = 1; i <= GAME_SIZE; i++) {
         targetBox = document.getElementById("box" + i);
         targetButton = targetBox.children[0];
