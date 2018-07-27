@@ -1,10 +1,16 @@
-const GAME_SIZE = 16;           // number of boxes in window
-const INIT_LIVES = 10;          // amount of lives player starts with
-const MATCH_COLOR = "#33cc33";  // background color for matched elements
-var firstChoice;                // will hold player's first choice
-var secondChoice;               // will hold player's second choice
-var solvedBoxes;                // amount of boxes that have been matched
-var lives;                      // number of lives player currently has
+const GAME_SIZE = 16;                   // number of boxes in window
+const INIT_LIVES = 10;                  // amount of lives player starts with
+const COLOR = {                         // colors to be used
+    TRANSPARENT: "rgba(0, 0, 0, 0)",
+    MATCH: "rgb(51, 204, 51)",          // equiv. to #33cc33
+    MISMATCH: "rgb(255, 26, 26)"        // equiv. to #ff1a1a
+};
+Object.freeze(COLOR);
+
+var firstChoice;    // will hold player's first choice
+var secondChoice;   // will hold player's second choice
+var solvedBoxes;    // amount of boxes that have been matched
+var lives;          // number of lives player currently has
 
 function pressPowerButton() {
     var button = document.getElementById("power_button");
@@ -86,9 +92,9 @@ function pressBoxButton(boxNumber) {
 
         // if the game elements match, ie. contain the same number
         if (firstChoice.element.innerHTML == secondChoice.element.innerHTML) {
-            firstChoice.box.style.backgroundColor = MATCH_COLOR;
+            firstChoice.box.style.backgroundColor = COLOR.MATCH;
             secondChoice.button.style.display = "none";
-            secondChoice.box.style.backgroundColor = MATCH_COLOR;
+            secondChoice.box.style.backgroundColor = COLOR.MATCH;
             secondChoice.element.style.display = "block";
             solvedBoxes += 2;
             solvedBoxes == GAME_SIZE ? winGame() : updateStatus("That was a match!");
@@ -122,6 +128,11 @@ function loseGame() {
 
         targetButton.style.display = "none";
         targetElement.style.display = "block";
+
+        // if current box's background color is transparent, then set it to red
+        if (window.getComputedStyle(targetBox).getPropertyValue("background-color") == COLOR.TRANSPARENT) {
+            targetBox.style.backgroundColor = COLOR.MISMATCH;
+        }
     }
 }
 
