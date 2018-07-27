@@ -47,8 +47,8 @@ function exitGame() {
         targetBox = document.getElementById("box" + i);
         targetButton = targetBox.children[0];
         targetElement = targetBox.children[1];
-        targetButton.style.display = "inline";
-        targetElement.style.backgroundColor = "transparent";
+        targetButton.style.display = "initial";
+        targetBox.style.backgroundColor = "transparent";
         targetElement.style.display = "none";
         targetElement.innerHTML = "";
     }
@@ -86,14 +86,14 @@ function pressBoxButton(boxNumber) {
 
         // if the game elements match, ie. contain the same number
         if (firstChoice.element.innerHTML == secondChoice.element.innerHTML) {
-            firstChoice.element.style.backgroundColor = MATCH_COLOR;
+            firstChoice.box.style.backgroundColor = MATCH_COLOR;
             secondChoice.button.style.display = "none";
-            secondChoice.element.style.backgroundColor = MATCH_COLOR;
+            secondChoice.box.style.backgroundColor = MATCH_COLOR;
             secondChoice.element.style.display = "block";
             solvedBoxes += 2;
             solvedBoxes == GAME_SIZE ? winGame() : updateStatus("That was a match!");
         } else {
-            firstChoice.button.style.display = "inline";
+            firstChoice.button.style.display = "initial";
             firstChoice.element.style.display = "none";
             lives--;
             lives == 0 ? loseGame() : updateStatus("That was not a match!");
