@@ -3,7 +3,7 @@ const INIT_LIVES = 10;                  // amount of lives player starts with
 const COLOR = {                         // colors to be used
     TRANSPARENT: "rgba(0, 0, 0, 0)",
     MATCH: "rgb(51, 204, 51)",          // equiv. to #33cc33
-    MISMATCH: "rgb(255, 26, 26)"        // equiv. to #ff1a1a
+    MISMATCH: "rgb(255, 51, 51)"        // equiv. to #ff3333
 };
 Object.freeze(COLOR);
 
