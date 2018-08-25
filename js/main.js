@@ -9,6 +9,7 @@ Object.freeze(COLOR);
 
 var firstChoice;    // will hold player's first choice
 var secondChoice;   // will hold player's second choice
+var prevChoices;    // player's previous choices, if they were not a match
 var solvedBoxes;    // amount of boxes that have been matched
 var lives;          // number of lives player currently has
 
@@ -25,7 +26,7 @@ function startGame() {
     // initialize game variables
     lives = INIT_LIVES;
     updateStatus("Good luck!");
-    firstChoice = secondChoice = undefined;
+    firstChoice = secondChoice = prevChoices = undefined;
     solvedBoxes = 0;
 
     // set up grid elements
@@ -69,6 +70,14 @@ function pressBoxButton(boxNumber) {
 
     // if player is making their first choice
     if (typeof firstChoice === 'undefined') {
+        // hide previous choices if they are currently being shown
+        if (typeof prevChoices !== 'undefined') {
+            prevChoices.first.element.style.display = "none";
+            prevChoices.second.element.style.display = "none";
+
+            prevChoices = undefined;
+        }
+
         firstChoice = {
             box: targetBox,
             button: targetBox.children[0],
@@ -98,9 +107,13 @@ function pressBoxButton(boxNumber) {
             secondChoice.element.style.display = "block";
             solvedBoxes += 2;
             solvedBoxes == GAME_SIZE ? winGame() : updateStatus("That was a match!");
-        } else {
+        } else { // they were not a match
+            prevChoices = {
+                first: firstChoice,
+                second: secondChoice
+            };
             firstChoice.button.style.display = "initial";
-            firstChoice.element.style.display = "none";
+            secondChoice.element.style.display = "block";
             lives--;
             lives == 0 ? loseGame() : updateStatus("That was not a match!");
         }
