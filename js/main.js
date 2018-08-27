@@ -54,7 +54,7 @@ function exitGame() {
         targetBox = document.getElementById("box" + i);
         targetButton = targetBox.children[0];
         targetElement = targetBox.children[1];
-        targetButton.style.display = "initial";
+        targetButton.style.visibility = "visible";
         targetBox.style.backgroundColor = "transparent";
         targetElement.style.display = "none";
         targetElement.innerHTML = "";
@@ -87,7 +87,7 @@ function pressBoxButton(boxNumber) {
         // show game element
         firstChoice.element.style.display = "block";
         // hide button
-        firstChoice.button.style.display = "none";
+        firstChoice.button.style.visibility = "hidden";
 
     } else { // player is making their second choice
         // check for equal box elements:
@@ -102,7 +102,7 @@ function pressBoxButton(boxNumber) {
         // if the game elements match, ie. contain the same number
         if (firstChoice.element.innerHTML == secondChoice.element.innerHTML) {
             firstChoice.box.style.backgroundColor = COLOR.MATCH;
-            secondChoice.button.style.display = "none";
+            secondChoice.button.style.visibility = "hidden";
             secondChoice.box.style.backgroundColor = COLOR.MATCH;
             secondChoice.element.style.display = "block";
             solvedBoxes += 2;
@@ -112,7 +112,7 @@ function pressBoxButton(boxNumber) {
                 first: firstChoice,
                 second: secondChoice
             };
-            firstChoice.button.style.display = "initial";
+            firstChoice.button.style.visibility = "visible";
             secondChoice.element.style.display = "block";
             lives--;
             lives == 0 ? loseGame() : updateStatus("That was not a match!");
@@ -139,7 +139,7 @@ function loseGame() {
         targetButton = targetBox.children[0];
         targetElement = targetBox.children[1];
 
-        targetButton.style.display = "none";
+        targetButton.style.visibility = "hidden";
         targetElement.style.display = "block";
 
         // if current box's background color is transparent, then set it to red
